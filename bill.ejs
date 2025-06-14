@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Summary</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .summary-box {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            width: 70%;
+            margin: 30px auto;
+            color: white;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            background-color: white;
+            color: black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #000;
+        }
+
+        .thank-you {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .note {
+            margin-top: 20px;
+            font-style: italic;
+            color: #fff;
+        }
+
+        @media print {
+            button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="summary-box">
+        <div class="thank-you">✅ Order Placed Successfully!</div>
+        <h3>Here’s your Order Summary:</h3>
+
+        <table>
+            <tr><th>Item</th><th>Price</th><th>Qty</th><th>Subtotal</th></tr>
+            <% bill.forEach(row => { %>
+                <tr>
+                    <td><%= row.name %></td>
+                    <td>₹<%= row.price %></td>
+                    <td><%= row.qty %></td>
+                    <td>₹<%= row.subtotal %></td>
+                </tr>
+            <% }) %>
+        </table>
+
+        <h3>Total Amount: ₹<%= total %></h3>
+        <p class="note">🙏 Thank you for ordering with us!<br>Please visit again.</p>
+        
+        <button onclick="window.print()">🖨️ Print Summary</button>
+        <br><br>
+        <a href="/" style="color:#00ffff;">← Back to Menu</a>
+    </div>
+</body>
+</html>
